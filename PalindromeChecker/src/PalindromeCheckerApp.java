@@ -1,34 +1,49 @@
 import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Scanner;
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-                String original = "refer";
+        System.out.print("Enter a string: ");
+        String original = scanner.nextLine();
 
-                Stack<Character> stack = new Stack<>();
+        // Create Stack (LIFO)
+        Stack<Character> stack = new Stack<Character>();
 
-                // Push characters into stack
-                for (int i = 0; i < original.length(); i++) {
-                    stack.push(original.charAt(i));
-                }
+        // Create Queue (FIFO)
+        Queue<Character> queue = new LinkedList<Character>();
 
-                boolean isPalindrome = true;
+        // Enqueue and Push characters
+        for (int i = 0; i < original.length(); i++) {
+            char ch = original.charAt(i);
+            stack.push(ch);     // LIFO
+            queue.add(ch);      // FIFO (Enqueue)
+        }
 
-                // Pop and compare
-                for (int i = 0; i < original.length(); i++) {
-                    char poppedChar = stack.pop();
+        boolean isPalindrome = true;
 
-                    if (original.charAt(i) != poppedChar) {
-                        isPalindrome = false;
-                        break;
-                    }
-                }
+        // Compare dequeue (queue) vs pop (stack)
+        for (int i = 0; i < original.length(); i++) {
 
-                // Print result
-                if (isPalindrome) {
-                    System.out.println("The string \"" + original + "\" is a Palindrome.");
-                } else {
-                    System.out.println("The string \"" + original + "\" is NOT a Palindrome.");
-                }
+            char fromQueue = queue.remove();  // Dequeue
+            char fromStack = stack.pop();     // Pop
+
+            if (fromQueue != fromStack) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        // Display Result
+        if (isPalindrome) {
+            System.out.println("The string \"" + original + "\" is a Palindrome.");
+        } else {
+            System.out.println("The string \"" + original + "\" is NOT a Palindrome.");
+        }
+
+        scanner.close();
             }
         }
 
