@@ -1,5 +1,22 @@
 public class PalindromeCheckerApp {
     public static void main(String[] args){
-        System.out.println("Welcome to palindrome checker app management system");
-    }
-}
+
+
+                String original = "level";
+
+
+                String reversed = "";
+
+                for (int i = original.length() - 1; i >= 0; i--) {
+                    reversed = reversed + original.charAt(i);  // String concatenation
+                }
+
+                if (original.equals(reversed)) {
+                    System.out.println("The string \"" + original + "\" is a Palindrome.");
+                } else {
+                    System.out.println("The string \"" + original + "\" is NOT a Palindrome.");
+                }
+
+            }
+        }
+
