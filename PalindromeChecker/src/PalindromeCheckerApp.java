@@ -1,39 +1,46 @@
 
 import java.util.Scanner;
 public class PalindromeCheckerApp {
-    public static boolean isPalindrome(String str, int start, int end) {
-        // Base condition: crossed pointers or single char
-        if (start >= end) {
-            return true;
+    public static boolean isPalindrome(String input) {
+
+        // Normalize string: remove spaces and convert to lowercase
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+
+        // Convert to char array
+        char[] arr = normalized.toCharArray();
+
+        int left = 0;
+        int right = arr.length - 1;
+
+        // Check palindrome
+        while (left < right) {
+            if (arr[left] != arr[right]) {
+                return false;
+            }
+            left++;
+            right--;
         }
 
-        // Check characters at start and end
-        if (str.charAt(start) != str.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call
-        return isPalindrome(str, start + 1, end - 1);
-
+        return true;
     }
+
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter a string: ");
+        System.out.println("Enter a string:");
         String input = scanner.nextLine();
 
-        boolean result = isPalindrome(input, 0, input.length() - 1);
-
-        if (result) {
-            System.out.println("The string \"" + input + "\" is a Palindrome.");
+        if (isPalindrome(input)) {
+            System.out.println("The given string is a palindrome (ignoring spaces and case).");
         } else {
-            System.out.println("The string \"" + input + "\" is NOT a Palindrome.");
+            System.out.println("The given string is NOT a palindrome.");
         }
 
         scanner.close();
+    }
+}
 
-            }
-        }
 
 
 
